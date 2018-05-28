@@ -1,0 +1,3 @@
+rootProject.name = 'dronesim'
+
+include ':core', ':client'

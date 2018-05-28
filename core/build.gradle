@@ -1,0 +1,5 @@
+sourceCompatibility = JavaVersion.VERSION_1_8
+
+dependencies {
+    compile "com.google.code.gson:gson:$gsonVersion"
+}

@@ -1,0 +1,48 @@
+buildscript {
+
+    ext.kotlinVersion = '1.2.41'
+    ext.junitVersion = '5.1.0'
+
+    ext.gsonVersion = '2.8.2'
+    ext.gdxVersion = '1.9.8'
+    ext.ashleyVersion = '1.7.0'
+    ext.assertJVersion = '3.9.1'
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven { url "https://oss.sonatype.org/content/repositories/releases/" }
+        jcenter()
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+    }
+}
+
+allprojects {
+    apply plugin: "eclipse"
+    apply plugin: "idea"
+    apply plugin: "java"
+    apply plugin: "kotlin"
+
+    version = '0.0.1'
+
+    dependencies {
+        compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+        testCompile "org.junit.jupiter:junit-jupiter-api:$junitVersion"
+        testCompile "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+        testCompile "org.assertj:assertj-core:$assertJVersion"
+    }
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven { url "https://oss.sonatype.org/content/repositories/releases/" }
+        jcenter()
+    }
+}
+
+tasks.eclipse.doLast {
+    delete ".project"
+}
