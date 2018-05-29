@@ -17,19 +17,6 @@ class Vec3d(
         return Math.sqrt(length2())
     }
 
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
-
-        other as Vec3d
-
-        if (x != other.x) return false
-        if (y != other.y) return false
-        if (z != other.z) return false
-
-        return true
-    }
-
     operator fun plus(vec: Vec3d): Vec3d {
         return Vec3d(x + vec.x, y + vec.y, z + vec.z)
     }
@@ -60,6 +47,19 @@ class Vec3d(
 
     fun dot(vec: Vec3d): Double {
         return (x * vec.x + y * vec.y + z * vec.z) / (length() * vec.length())
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Vec3d
+
+        if (x != other.x) return false
+        if (y != other.y) return false
+        if (z != other.z) return false
+
+        return true
     }
 
     override fun hashCode(): Int {
