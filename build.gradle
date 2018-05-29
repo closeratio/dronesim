@@ -41,6 +41,12 @@ allprojects {
         maven { url "https://oss.sonatype.org/content/repositories/releases/" }
         jcenter()
     }
+
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+        kotlinOptions {
+            jvmTarget = "1.8"
+        }
+    }
 }
 
 tasks.eclipse.doLast {

@@ -30,6 +30,38 @@ class Vec3d(
         return true
     }
 
+    operator fun plus(vec: Vec3d): Vec3d {
+        return Vec3d(x + vec.x, y + vec.y, z + vec.z)
+    }
+
+    operator fun plus(num: Number): Vec3d {
+        return plus(Vec3d(num.toDouble(), num.toDouble(), num.toDouble()))
+    }
+
+    operator fun times(vec: Vec3d): Vec3d {
+        return Vec3d(x * vec.x, y * vec.y, z * vec.z)
+    }
+
+    operator fun times(num: Number): Vec3d {
+        return times(Vec3d(num.toDouble(), num.toDouble(), num.toDouble()))
+    }
+
+    operator fun div(vec: Vec3d): Vec3d {
+        return times(Vec3d(1.0 / vec.x, 1.0 / vec.y, 1.0 / vec.z))
+    }
+
+    operator fun div(num: Number): Vec3d {
+        return times(1.0 / num.toDouble())
+    }
+
+    fun normalized(): Vec3d {
+        return div(length())
+    }
+
+    fun dot(vec: Vec3d): Double {
+        return (x * vec.x + y * vec.y + z * vec.z) / (length() * vec.length())
+    }
+
     override fun hashCode(): Int {
         var result = x.hashCode()
         result = 31 * result + y.hashCode()
@@ -38,31 +70,25 @@ class Vec3d(
     }
 
     override fun toString(): String {
-        return "Vec3d(x=$x, y=$y, z=$z)"
+        return "Vec3d(x=$x, y=$y, Z=$z)"
     }
 
-    operator fun plus(vec: Vec3d): Vec3d {
-        return Vec3d(x + vec.x, y + vec.y, z + vec.z)
-    }
+    fun cross(vec: Vec3d): Vec3d {
+        if (dot(vec) == 1.0) {
+            throw IllegalArgumentException("Cannot perform cross product on parallel vectors $this and $vec")
+        }
 
-    operator fun plus(doub: Double): Vec3d {
-        return plus(Vec3d(doub, doub, doub))
-    }
-
-    operator fun times(vec: Vec3d): Vec3d {
-        return Vec3d(x * vec.x, y * vec.y, z * vec.z)
-    }
-
-    operator fun times(doub: Double): Vec3d {
-        return times(Vec3d(doub, doub, doub))
+        return Vec3d(
+                y * vec.z - vec.y * z,
+                z * vec.x - vec.z * x,
+                x * vec.y - vec.x * y)
     }
 
     companion object {
         val ZERO = Vec3d(0.0, 0.0, 0.0)
         val X = Vec3d(1.0, 0.0, 0.0)
         val Y = Vec3d(0.0, 1.0, 0.0)
-        val z = Vec3d(0.0, 0.0, 1.0)
+        val Z = Vec3d(0.0, 0.0, 1.0)
     }
-
 
 }
