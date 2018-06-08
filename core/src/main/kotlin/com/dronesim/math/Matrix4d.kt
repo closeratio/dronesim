@@ -262,6 +262,18 @@ class Matrix4d(
                 9, 10, 11, 12,
                 13, 14, 15, 16)
 
+        fun MakeTranslate(x: Number, y: Number, z: Number): Matrix4d {
+            return Matrix4d(
+                    1, 0, 0, x,
+                    0, 1, 0, y,
+                    0, 0, 1, z,
+                    0, 0, 0, 1)
+        }
+
+        fun MakeTranslate(vec: Vec3d): Matrix4d {
+            return MakeTranslate(vec.x, vec.y, vec.z)
+        }
+
     }
 
     private fun doubleArrayOf(vararg elements: Number): DoubleArray {

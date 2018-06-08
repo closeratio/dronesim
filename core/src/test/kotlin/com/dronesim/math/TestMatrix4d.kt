@@ -103,4 +103,15 @@ class TestMatrix4d {
         assertThat(inv * mat).isEqualTo(Matrix4d.IDENTITY)
     }
 
+    @Test
+    fun testTranslate() {
+        val mat1 = Matrix4d.MakeTranslate(1, 2, 3)
+        val mat2 = Matrix4d.MakeTranslate(-10, 5, 22.2)
+
+        val result = mat2 * mat1
+        assertThat(result.value(0, 3)).isEqualTo(-9.0)
+        assertThat(result.value(1, 3)).isEqualTo(7.0)
+        assertThat(result.value(2, 3)).isEqualTo(25.2)
+    }
+
 }
