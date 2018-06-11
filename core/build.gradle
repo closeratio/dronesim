@@ -19,4 +19,5 @@ sourceCompatibility = 1.8
 
 dependencies {
     compile "com.google.code.gson:gson:$gsonVersion"
+    compile "org.apache.commons:commons-math3:$commonsMathVersion"
 }

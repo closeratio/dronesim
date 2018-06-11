@@ -24,6 +24,7 @@ buildscript {
     ext.gdxVersion = '1.9.8'
     ext.ashleyVersion = '1.7.0'
     ext.assertJVersion = '3.9.1'
+    ext.commonsMathVersion = '3.6.1'
 
     repositories {
         mavenLocal()

@@ -15,44 +15,24 @@
  * along with DroneSim.  If not, see http://www.gnu.org/licenses.
  */
 
-package com.dronesim.math
+package com.dronesim.sim
 
-class Quaternion(
-        w: Number = 0.0,
-        x: Number = 0.0,
-        y: Number = 0.0,
-        z: Number = 0.0) {
-
-    val w = w.toDouble()
-    val x = x.toDouble()
-    val y = y.toDouble()
-    val z = z.toDouble()
+class IterationParameters(
+        val deltaTime: Double
+) {
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as Quaternion
+        other as IterationParameters
 
-        if (w != other.w) return false
-        if (x != other.x) return false
-        if (y != other.y) return false
-        if (z != other.z) return false
+        if (deltaTime != other.deltaTime) return false
 
         return true
     }
 
     override fun hashCode(): Int {
-        var result = w.hashCode()
-        result = 31 * result + x.hashCode()
-        result = 31 * result + y.hashCode()
-        result = 31 * result + z.hashCode()
-        return result
+        return deltaTime.hashCode()
     }
-
-    override fun toString(): String {
-        return "Quaternion(w=$w, x=$x, y=$y, z=$z)"
-    }
-
-
 }

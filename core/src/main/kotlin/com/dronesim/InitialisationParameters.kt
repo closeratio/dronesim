@@ -18,6 +18,7 @@
 package com.dronesim
 
 import com.dronesim.sim.Aircraft
+import com.dronesim.sim.PhysicalObject
 
 class InitialisationParameters(
         val aircraft: List<Aircraft>

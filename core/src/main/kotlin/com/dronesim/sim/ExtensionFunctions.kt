@@ -15,10 +15,26 @@
  * along with DroneSim.  If not, see http://www.gnu.org/licenses.
  */
 
-package com.dronesim.math
+package com.dronesim.sim
 
-abstract class Integrator {
+import org.apache.commons.math3.geometry.euclidean.threed.Vector3D
 
-    abstract fun integrate(base: Vec3d, modifier: Vec3d, delta: Number): Vec3d
+operator fun Vector3D.plus(v: Vector3D): Vector3D {
+    return this.add(v)
+}
 
+operator fun Vector3D.times(c: Double): Vector3D {
+    return this.scalarMultiply(c)
+}
+
+operator fun Vector3D.times(v: Vector3D): Vector3D {
+    return Vector3D(x * v.x, y * v.y, z * v.z)
+}
+
+operator fun Vector3D.div(c: Double): Vector3D {
+    return this.scalarMultiply(1.0 / c)
+}
+
+operator fun Vector3D.div(v: Vector3D): Vector3D {
+    return Vector3D(x / v.x, y / v.y, z / v.z)
 }

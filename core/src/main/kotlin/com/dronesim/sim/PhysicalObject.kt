@@ -19,30 +19,30 @@ package com.dronesim.sim
 
 import org.apache.commons.math3.geometry.euclidean.threed.Rotation
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D
-import org.apache.commons.math3.geometry.euclidean.threed.Vector3D.ZERO
-import org.apache.commons.math3.linear.MatrixUtils
+import org.apache.commons.math3.linear.RealMatrix
 
-class Aircraft(
-        mass: Number = 1,
-        pos: Vector3D = ZERO,
-        vel: Vector3D = ZERO,
-        acc: Vector3D = ZERO,
-        force: Vector3D = ZERO,
-        ori: Rotation = Rotation.IDENTITY,
-        angVel: Vector3D = ZERO,
-        angAcc: Vector3D = ZERO,
-        torque: Vector3D = ZERO
-): PhysicalObject(
-        mass.toDouble(),
-        pos,
-        vel,
-        acc,
-        force,
-        MatrixUtils.createRealIdentityMatrix(3),
-        ori,
-        angVel,
-        angAcc,
-        torque,
-        false) {
+abstract class PhysicalObject(
+        var mass: Double,
+        var pos: Vector3D,
+        var vel: Vector3D,
+        var acc: Vector3D,
+        var force: Vector3D,
+        var inertiaTensor: RealMatrix,
+        var ori: Rotation,
+        var angVel: Vector3D,
+        var angAcc: Vector3D,
+        var torque: Vector3D,
+        var fixed: Boolean): Entity() {
 
+    override fun iterate(params: IterationParameters) {
+        if (fixed) return
+
+        acc = force / mass
+        vel += acc * params.deltaTime
+        pos += vel * params.deltaTime
+
+        // TODO: Rotation
+    }
 }
+
+
